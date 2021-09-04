@@ -3,7 +3,7 @@ package functions
 import (
 	"bytes"
 
-	"github.com/webmachinedev/types"
+	"github.com/webmachinedev/src/types"
 )
 
 func UpdateFunction(id string, f *types.Function, githubkey string) error {

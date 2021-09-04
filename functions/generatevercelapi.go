@@ -12,7 +12,7 @@ import (
 	"net/http"
 
 	"github.com/webmachinedev/functions"
-	"github.com/webmachinedev/types"
+	"github.com/webmachinedev/src/types"
 )
 
 type Request struct {

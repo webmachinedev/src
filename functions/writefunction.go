@@ -4,7 +4,7 @@ import (
 	"io"
 	"text/template"
 
-	"github.com/webmachinedev/types"
+	"github.com/webmachinedev/src/types"
 )
 
 func WriteFunction(w io.Writer, f *types.Function) error {
