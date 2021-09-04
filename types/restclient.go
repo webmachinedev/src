@@ -10,9 +10,9 @@ func (c *RestClient) Get(resource, id string) ([]byte, error) {
 }
 
 func (c *RestClient) Set(resource, id string, value []byte) (error) {
-	return nil, nil
+	return nil
 }
 
 func (c *RestClient) Del(resource, id string) (error) {
-	return nil, nil
+	return nil
 }
