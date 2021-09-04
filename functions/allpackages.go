@@ -1,8 +1,12 @@
 package functions
 
-import "github.com/webmachinedev/src/types"
+import (
+	"io/fs"
 
-func AllPackages() []types.Package {
+	"github.com/webmachinedev/src/types"
+)
+
+func AllPackages(fs fs.FS) []types.Package {
 	pkgids := []string{
 		"github.com/webmachinedev/src/functions",
 		"github.com/webmachinedev/src/types",
