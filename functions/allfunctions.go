@@ -1,34 +1,37 @@
 package functions
 
 import (
-	"io/fs"
+	"embed"
 
 	"github.com/webmachinedev/src/types"
 )
 
-func AllFunctions(fsys fs.FS) ([]types.Function, error) {
-	maxFunctionFileBytes := 20_000
+var SIZE_OF_LARGEST_FUNCTION_FILE = 20_000
 
-	matches, err := fs.Glob(fsys, "functions/*")
+func AllFunctions() ([]types.Function, error) {
+	//go:embed *
+	var f embed.FS
+
+	dirEntries, err := f.ReadDir(".")
 	if err != nil {
 		return nil, err
 	}
 
-	for _, filename := range matches {
-		file, err := fsys.Open(filename)
+	var functions []types.Function
+
+	for _, dirEntry := range dirEntries {
+		file, err := f.Open(dirEntry.Name())
 		if err != nil {
 			return nil, err
 		}
 
-		bytes := make([]byte, maxFunctionFileBytes)
-
-		_, err = file.Read(bytes)
+		function, err := ParseFunction(file)
 		if err != nil {
 			return nil, err
 		}
 
-
+		functions = append(functions, function)
 	}
-	pkg := GetPackage("github.com/webmachinedev/functions")
-	return pkg.Functions
+
+	return functions, nil
 }
