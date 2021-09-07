@@ -1,37 +1,40 @@
 package functions
 
 import (
-	"embed"
-
 	"github.com/webmachinedev/src/types"
 )
 
 var SIZE_OF_LARGEST_FUNCTION_FILE = 20_000
 
 func AllFunctions() ([]types.Function, error) {
-	//go:embed *
-	var f embed.FS
-
-	dirEntries, err := f.ReadDir(".")
+	pkg, err := GetPackage("github.com/webmachinedev/types")
 	if err != nil {
 		return nil, err
 	}
+	return pkg.Functions, nil
+	// //go:embed *
+	// var f embed.FS
 
-	var functions []types.Function
+	// dirEntries, err := f.ReadDir(".")
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	for _, dirEntry := range dirEntries {
-		file, err := f.Open(dirEntry.Name())
-		if err != nil {
-			return nil, err
-		}
+	// var functions []types.Function
 
-		function, err := ParseFunction(file)
-		if err != nil {
-			return nil, err
-		}
+	// for _, dirEntry := range dirEntries {
+	// 	file, err := f.Open(dirEntry.Name())
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
 
-		functions = append(functions, function)
-	}
+	// 	function, err := ParseFunction(file)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
 
-	return functions, nil
+	// 	functions = append(functions, function)
+	// }
+
+	// return functions, nil
 }

@@ -1,6 +1,7 @@
 package types
 
-type Function struct{
+type Function struct {
+	ID string
 	Name string
 	GoPackageName string
 	Inputs []Field
