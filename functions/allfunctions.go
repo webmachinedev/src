@@ -1,8 +1,6 @@
 package functions
 
 import (
-	"embed"
-
 	"github.com/webmachinedev/src/types"
 )
 
@@ -15,19 +13,21 @@ func AllFunctions() (functions []types.Function, err error) {
 
 	dirEntries, err := f.ReadDir(".")
 
-	for _, dirEntry := range dirEntries {
-		file, err := f.Open(dirEntry.Name())
-		if err != nil {
-			return nil, err
-		}
+	// var functions []types.Function
 
-		function, err := ParseFunction(file)
-		if err != nil {
-			return nil, err
-		}
+	// for _, dirEntry := range dirEntries {
+	// 	file, err := f.Open(dirEntry.Name())
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
 
-		functions = append(functions, function)
-	}
+	// 	function, err := ParseFunction(file)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+
+	// 	functions = append(functions, function)
+	// }
 
 	return functions, err
 }
